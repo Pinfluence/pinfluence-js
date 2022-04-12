@@ -1,0 +1,21 @@
+{
+  "name": "pinfluence-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.0",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1",
+    "pg": "^8.7.3",
+    "typeorm": "^0.3.6",
+    "typescript": "^4.6.3"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
