@@ -1,5 +1,5 @@
-var AppDataSource = require("./data-source.ts") 
-var Person = require("./entity/Person")
+import { AppDataSource } from "./data-source";
+import { Person } from "./entity/Person";
 
 AppDataSource.initialize()
     .then(() => {

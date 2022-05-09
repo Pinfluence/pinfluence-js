@@ -4,17 +4,14 @@ import { Person } from "./entity/Person";
 
 require('dotenv').config()
 
-const AppDataSource = new DataSource({
+export const AppDataSource = new DataSource({
     type: "postgres",
-    host: process.env.PGPASSWORD,
-    port: 5000,
+    host: process.env.PGHOST,
+    port: 5432,
     username: process.env.PGUSER,
     password: process.env.PGPASSOWRD,
     database: process.env.PGDATABASE,
     entities: [Person],
     synchronize: true,
-    logging: false,
+    logging: true,
 })
-
-module.exports = { AppDataSource }
-
