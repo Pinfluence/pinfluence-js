@@ -11,7 +11,8 @@ export const AppDataSource = new DataSource({
     username: process.env.PGUSER,
     password: process.env.PGPASSOWRD,
     database: process.env.PGDATABASE,
-    entities: [Person],
-    synchronize: true,
-    logging: true,
+    entities: ["entity/*.ts"],
+    migrations: ["db/*.ts"],
+    synchronize: (process.env.TYPEORM_SYNC === 'true'),
+    logging: true
 })
