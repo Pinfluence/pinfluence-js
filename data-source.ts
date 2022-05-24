@@ -1,6 +1,5 @@
 require("reflect-metadata")
 import { DataSource } from "typeorm";
-import { Person } from "./entity/Person";
 
 require('dotenv').config()
 

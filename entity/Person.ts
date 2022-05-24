@@ -1,12 +1,12 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Person {
 
-    @PrimaryColumn()
-    id!: number;
+    @PrimaryGeneratedColumn('increment')
+    id: number;
     
     @Column()
-    name!: string;
+    name: string;
 
 }
