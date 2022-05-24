@@ -11,7 +11,8 @@
     "migration:run": "npm run typeorm migration:run -- -d data-source.ts",
     "migration:show": "npm run typeorm migration:show -- -d data-source.ts",
     "migration:generate": "npm run typeorm migration:generate -- -d data-source.ts",
-    "migration:create": "npm run typeorm migration:create"
+    "migration:create": "npm run typeorm migration:create",
+    "test": "node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
