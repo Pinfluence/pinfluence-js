@@ -9,12 +9,14 @@
     "typeorm": "typeorm-ts-node-commonjs",
     "schema:sync": "npm run typeorm schema:sync -- -d data-source.ts",
     "migration:run": "npm run typeorm migration:run -- -d data-source.ts",
+    "migration:revert": "npm run typeorm migration:revert -- -d data-source.ts",
     "migration:show": "npm run typeorm migration:show -- -d data-source.ts",
     "migration:generate": "npm run typeorm migration:generate -- -d data-source.ts",
     "migration:create": "npm run typeorm migration:create",
     "test": "node_modules/jest/bin/jest.js"
   },
   "dependencies": {
+    "class-validator": "^0.13.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.0.0",

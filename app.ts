@@ -7,7 +7,10 @@ const app: Express = express();
 app.use(express.json());
 
 const personRouter = require("./routes/persons");
-app.use("/persons", personRouter)
+const influencesRouter = require("./routes/influences");
+
+app.use("/", personRouter)
+app.use("/", influencesRouter)
 
 if (process.env.NODE_ENV !== "test") {
   const port = '3000'

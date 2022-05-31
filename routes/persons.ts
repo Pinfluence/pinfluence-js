@@ -1,7 +1,7 @@
 import express from "express";
 import { Request, Response, NextFunction } from 'express';
 import { AppDataSource } from "../data-source"
-import { Person } from "../entity/Person";
+import { Person } from "../entities/Person";
 
 AppDataSource
     .initialize()
@@ -14,7 +14,7 @@ AppDataSource
 
 const router = express.Router()
 
-router.post("/", async function (req: Request, res: Response) {
+router.post("/persons", async function (req: Request, res: Response) {
   let person = req.body.name
   console.log("person", person)
   if(person === "" || person === undefined || typeof person !== "string"){

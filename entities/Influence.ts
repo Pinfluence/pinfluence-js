@@ -1,5 +1,9 @@
 import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Person } from "./Person";
+import {
+  IsDate,
+  IsEmpty
+} from "class-validator";
 
 @Entity()
 export class Influence {
@@ -8,16 +12,16 @@ export class Influence {
   id: number;
 
   @Column({type: 'date'})
+  @IsDate()
   start_date: string ;
 
   @Column({type: 'date'})
+  @IsDate()
   end_date?: string;
 
   @Column()
-  adress: string[];
-
-  @Column()
-  person_id: string;
+  @IsEmpty()
+  address: string;
 
   @ManyToOne(() => Person, (person) => person.influences)
   person: Person
