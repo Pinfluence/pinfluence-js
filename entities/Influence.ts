@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, JoinColumn, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Person } from "./Person";
 import {
   IsDate,
@@ -24,6 +24,7 @@ export class Influence {
   address: string;
 
   @ManyToOne(() => Person, (person) => person.influences)
+  @JoinColumn()
   person: Person
 
 }
