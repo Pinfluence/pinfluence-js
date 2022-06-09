@@ -1,5 +1,6 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import dotenv from 'dotenv';
+import { AppDataSource } from "./data-source"
 dotenv.config();
 
 const app: Express = express();
@@ -13,6 +14,15 @@ app.use("/", personRouter)
 app.use("/", influencesRouter)
 
 if (process.env.NODE_ENV !== "test") {
+  AppDataSource
+      .initialize()
+      .then(() => {
+          console.log("Data Source has been initialized!")
+      })
+      .catch((err) => {
+          console.error("Error during Data Source initialization:", err)
+      })
+
   const port = '3000'
 
   app.listen(port, () => {

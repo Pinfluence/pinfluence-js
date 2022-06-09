@@ -15,5 +15,10 @@ module.exports = {
       diagnostics: false
     }
   },
-  testTimeout: 20000
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  testTimeout: 5000,
+  testMatch: [
+    '!**/dist/**',
+    '**/**/*.test.ts'
+  ]
 };
