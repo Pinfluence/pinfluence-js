@@ -7,7 +7,8 @@ import { isAfter, parseISO } from "date-fns";
 const router = express.Router()
 
 router.post("/influences", async function (req: Request, res: Response) {
-  let { start_date, address, person } = req.body
+  let { start_date, end_date, address, person_id } = req.body
+  console.log("req body", req.body)
 
   const influenceRepository = AppDataSource.getRepository(Influence)
   let influences = await influenceRepository.find({
@@ -15,42 +16,49 @@ router.post("/influences", async function (req: Request, res: Response) {
         person: true,
       },
         where: {
-          person: person
+          person: person_id
         }    
     })
 
     let lastInsertedDates = []
     for (let i = 0; i < influences.length; i++){
-      let personId = influences[i].person.id
-      if(personId === person) {
+      let requestedPersonId = influences[i].person.id
+      if(requestedPersonId === person_id) {
         lastInsertedDates.push(influences[i].start_date)
       }
     }
 
     let dateToCompare;
     let startDate = parseISO(start_date)
-
+    let requestedDate;
     for(let i = 0; i < lastInsertedDates.length; i++){
       let compareDate = parseISO(lastInsertedDates[i])
-      
-      if (compareDate !== startDate){
-        let dateResult = isAfter((startDate), (compareDate))
-        if(dateResult === true){
-        dateToCompare = dateResult
-        }
+      requestedDate = compareDate
+      if (requestedDate !== startDate){
+        let dateResult = isAfter((requestedDate), (startDate))
+          if(dateResult === true){
+          dateToCompare = dateResult
       }
     }
-    
-  if(lastInsertedDates === start_date || dateToCompare === true){
-    res.sendStatus(400)
-  } else if(address === "" || address === undefined){
-      res.sendStatus(400)
-  } else {
-    const influenceRepository = AppDataSource.getRepository(Influence)
-    .create(req.body)
-    const results = await AppDataSource.getRepository(Influence).save(influenceRepository)
-      return res.send(results)
-  }
+  }   
+
+      if (requestedDate === startDate || dateToCompare === true){
+        console.log("bateu?")
+        res.sendStatus(400)
+      } else if (address === "" || address === undefined){
+          res.sendStatus(400)
+      } else {
+        const influenceRepository = AppDataSource.getRepository(Influence)
+        .create({
+          start_date: start_date, 
+          end_date: end_date,
+          address: address,
+          person: person_id
+        })
+        const results = await AppDataSource.getRepository(Influence).save(influenceRepository)
+          return res.send(results)
+    }
+  
 })
 
 module.exports = router
