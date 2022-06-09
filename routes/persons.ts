@@ -5,7 +5,7 @@ import { Person } from "../entities/Person";
 
 const router = express.Router()
 
-router.post("/persons", async function (req: Request, res: Response) {
+router.post("/", async function (req: Request, res: Response) {
   let person = req.body.name
   
   if(person === "" || person === undefined || typeof person !== "string"){

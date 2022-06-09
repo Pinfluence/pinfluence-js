@@ -6,7 +6,7 @@ import { isAfter, parseISO } from "date-fns";
 
 const router = express.Router()
 
-router.post("/influences", async function (req: Request, res: Response) {
+router.post("/", async function (req: Request, res: Response) {
   let { start_date, end_date, address, person_id } = req.body
   console.log("req body", req.body)
 

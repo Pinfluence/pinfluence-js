@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "test") {
         username: process.env.PGUSER,
         password: process.env.PGPASSOWRD,
         database: "pinfluence_test",
-        entities: ["entity/*.ts"],
+        entities: ["entities/*.ts"],
         migrations: ["db/*.ts"],
         synchronize: true,
         migrationsRun: true,
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === "test") {
         username: process.env.PGUSER,
         password: process.env.PGPASSOWRD,
         database: process.env.PGDATABASE,
-        entities: ["entity/*.ts"],
+        entities: ["entities/*.ts"],
         migrations: ["db/*.ts"],
         synchronize: (process.env.TYPEORM_SYNC === 'true'),
         logging: true
