@@ -8,26 +8,9 @@ const router = express.Router()
 
 router.post("/", async function (req: Request, res: Response) {
   let { start_date, end_date, address, person_id } = req.body
-  console.log("req body", req.body)
 
-  const influenceRepository = AppDataSource.getRepository(Influence)
-  let influences = await influenceRepository.find({
-      relations: {
-        person: true,
-      },
-        where: {
-          person: person_id
-        }    
-    })
 
-    let lastInsertedDates = []
-    for (let i = 0; i < influences.length; i++){
-      let requestedPersonId = influences[i].person.id
-      if(requestedPersonId === person_id) {
-        lastInsertedDates.push(influences[i].start_date)
-      }
-    }
-
+    let lastInsertedDates : string[] = [];
     let requestedDate;
     let startDate = parseISO(start_date)
     for(let i = 0; i < lastInsertedDates.length; i++){

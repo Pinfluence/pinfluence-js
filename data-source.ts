@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "test") {
         synchronize: true,
         migrationsRun: true,
         dropSchema: true,
-        logging: false
+        logging: (process.env.TEST_LOGGING_ENABLED === 'true')
     }
 } else {
     DBConfig = {
