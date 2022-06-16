@@ -28,37 +28,30 @@ router.post("/", async function (req: Request, res: Response) {
       }
     }
 
-    let dateToCompare;
-    let startDate = parseISO(start_date)
     let requestedDate;
+    let startDate = parseISO(start_date)
     for(let i = 0; i < lastInsertedDates.length; i++){
       let compareDate = parseISO(lastInsertedDates[i])
       requestedDate = compareDate
       if (requestedDate !== startDate){
-        let dateResult = isAfter((requestedDate), (startDate))
-          if(dateResult === true){
-          dateToCompare = dateResult
+        let dateResult = isAfter((startDate), (requestedDate))
+          if(dateResult === true || requestedDate === startDate){
+            res.sendStatus(400)
+          } else if (address === "" || address === undefined){
+              res.sendStatus(400)
+          } else {
+            const influenceRepository = AppDataSource.getRepository(Influence)
+            .create({
+              start_date: start_date, 
+              end_date: end_date,
+              address: address,
+              person: person_id
+            })
+            const results = await AppDataSource.getRepository(Influence).save(influenceRepository)
+              return res.send(results)
       }
     }
-  }   
-
-      if (requestedDate === startDate || dateToCompare === true){
-        console.log("bateu?")
-        res.sendStatus(400)
-      } else if (address === "" || address === undefined){
-          res.sendStatus(400)
-      } else {
-        const influenceRepository = AppDataSource.getRepository(Influence)
-        .create({
-          start_date: start_date, 
-          end_date: end_date,
-          address: address,
-          person: person_id
-        })
-        const results = await AppDataSource.getRepository(Influence).save(influenceRepository)
-          return res.send(results)
-    }
-  
+  } 
 })
 
 module.exports = router
