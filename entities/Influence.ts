@@ -13,11 +13,11 @@ export class Influence {
 
   @Column({type: 'date'})
   @IsDate()
-  start_date: string ;
+  start_date: Date;
 
   @Column({type: 'date'})
   @IsDate()
-  end_date?: string;
+  end_date?: Date;
 
   @Column()
   @IsEmpty()
