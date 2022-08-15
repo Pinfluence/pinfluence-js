@@ -8,7 +8,10 @@ const app: Express = express();
 app.use(express.json());
 
 const personRouter = require("./routes/persons");
+const influencesRouter = require("./routes/influences");
+
 app.use("/persons", personRouter)
+app.use("/influences", influencesRouter)
 
 if (process.env.NODE_ENV !== "test") {
   AppDataSource

@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../app');
 import { AppDataSource } from "../data-source";
-import { Person } from "../entity/Person";
+import { Person } from "../entities/Person";
 
 describe('POST /persons', () => {
   test('WHEN a person is successfully created THEN returns a success http response', async () => {

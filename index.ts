@@ -1,5 +1,5 @@
 // import { AppDataSource } from "./data-source";
-// import { Person } from "./entity/Person";
+// import { Person } from "./entities/Person";
 
 // AppDataSource.initialize()
 //     .then(() => {
